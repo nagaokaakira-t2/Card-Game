@@ -694,5 +694,8 @@ function init() {
 window.addEventListener("error", (e) => {
   showFatalError(String(e.message || e));
 });
+window.addEventListener("unhandledrejection", (e) => {
+  showFatalError(String((e.reason && e.reason.message) || e.reason || e));
+});
 
 init();
