@@ -119,7 +119,7 @@ main {
   align-items: center;
 }
 
-#end-turn-btn {
+#end-turn-btn, #confirm-start-btn {
   background: var(--accent);
   color: #14161b;
   border: none;
@@ -128,7 +128,19 @@ main {
   font-weight: bold;
   cursor: pointer;
 }
-#end-turn-btn:disabled { opacity: 0.4; cursor: default; }
+#end-turn-btn:disabled, #confirm-start-btn:disabled { opacity: 0.4; cursor: default; }
+
+.secondary-btn {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+.secondary-btn:hover { border-color: var(--accent); }
 
 .abilities {
   display: flex;
@@ -179,5 +191,92 @@ main {
 }
 .mode-btn:hover { background: #2f3542; }
 .mode-btn small { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+/* デッキ/能力ビルダー画面 */
+.builder-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.tab-btn {
+  background: var(--panel-2);
+  color: var(--muted);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.tab-btn.active { color: var(--bg); background: var(--accent); font-weight: bold; }
+
+.builder-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-pool {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.pool-card {
+  background: var(--panel-2);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 11px;
+  border: 2px solid transparent;
+}
+.pool-card.element-fire   { border-color: var(--fire); }
+.pool-card.element-wind   { border-color: var(--wind); }
+.pool-card.element-water  { border-color: var(--water); }
+.pool-card.element-earth  { border-color: var(--earth); }
+.pool-card.element-heaven { border-color: var(--heaven); }
+.pool-card.element-nether { border-color: var(--nether); }
+
+.pool-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+.pool-btn {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  width: 24px; height: 24px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+.pool-btn:disabled { opacity: 0.3; cursor: default; }
+.pool-count { font-weight: bold; }
+
+.ability-pool {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+.ability-option {
+  background: var(--panel-2);
+  border: 2px solid var(--muted);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.ability-option.selected { border-color: var(--accent); background: #2f3542; }
+.ability-option.disabled { opacity: 0.35; cursor: default; }
 
 .hidden { display: none !important; }
