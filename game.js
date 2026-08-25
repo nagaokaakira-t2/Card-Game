@@ -9,6 +9,7 @@
 // ==============================
 
 const DATA_VERSION = 1;
+const SCRIPT_VERSION = 4;
 
 const ELEMENT_NAMES = {
   fire: "火", wind: "風", water: "水", earth: "土", heaven: "天", nether: "冥",
@@ -662,19 +663,27 @@ async function loadGameData() {
   return res.json();
 }
 
+function bootStatus(msg) {
+  const el = document.getElementById("boot-status");
+  if (el) el.textContent = msg;
+}
+
 async function selectMode(level) {
   AI_LEVEL = level;
+  bootStatus("カードデータを読み込み中…(data/gamedata.json)");
   try {
     if (!GAME_DATA) {
       GAME_DATA = await loadGameData();
       ELEMENT_CYCLE = GAME_DATA.elementCycle;
       NEUTRAL_ELEMENTS = GAME_DATA.neutralElements;
     }
+    bootStatus("読み込み完了。画面を切り替えます…");
     builder.deck = [];
     builder.abilities = { passive: [], active: [] };
     renderBuilder();
     showScreen("builder-screen");
   } catch (err) {
+    bootStatus("");
     showFatalError(
       String(err) +
       "\n\ndata/gamedata.json が正しい場所に配置されているか、ファイル名やフォルダ構成(data/ フォルダごと)が" +
@@ -684,6 +693,7 @@ async function selectMode(level) {
 }
 
 function init() {
+  bootStatus(`game.js v${SCRIPT_VERSION} 読み込み完了。ボタンを押すとゲームが始まります。`);
   document.querySelectorAll(".mode-btn").forEach((btn) => {
     btn.addEventListener("click", () => selectMode(btn.dataset.level));
   });
@@ -698,4 +708,8 @@ window.addEventListener("unhandledrejection", (e) => {
   showFatalError(String((e.reason && e.reason.message) || e.reason || e));
 });
 
-init();
+try {
+  init();
+} catch (err) {
+  showFatalError("初期化処理でエラーが発生しました: " + String(err));
+}
