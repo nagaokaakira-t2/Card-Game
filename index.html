@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カードゲーム(仮)</title>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <div id="mode-select">
+    <h2>カードゲーム(仮)</h2>
+    <p>対戦相手を選んでください</p>
+    <div class="mode-buttons">
+      <button class="mode-btn" data-level="cpu">
+        CPU対戦(かんたん)
+        <small>ランダムにカードを出し、手当たり次第に攻撃してくる相手です。</small>
+      </button>
+      <button class="mode-btn" data-level="ai">
+        AI対戦(強め)
+        <small>手札を効率よく使い、有利な属性やとどめを狙って攻撃してくる相手です。</small>
+      </button>
+    </div>
+  </div>
+
+  <div id="game-screen" class="hidden">
+    <header>
+      <h1>カードゲーム(仮) - 試作版</h1>
+      <div id="turn-indicator"></div>
+    </header>
+    <main>
+      <section class="zone">
+        <div class="zone-header">
+          <span>相手 HP: <b id="opponent-hp"></b> / 光: <b id="opponent-light"></b> / 山札: <b id="deck-count-opponent"></b>枚</span>
+          <span class="player-target" id="opponent-player-target">相手プレイヤーを攻撃</span>
+        </div>
+        <div class="field" id="opponent-field"></div>
+      </section>
+
+      <section class="zone">
+        <div class="zone-header">
+          <span>自分 HP: <b id="self-hp"></b> / 光: <b id="self-light"></b> / 山札: <b id="deck-count-self"></b>枚</span>
+        </div>
+        <div class="field" id="player-field"></div>
+        <div class="hand" id="player-hand"></div>
+      </section>
+
+      <section class="zone">
+        <div class="zone-header"><span>自分のプレイヤー能力</span></div>
+        <div class="abilities" id="self-abilities"></div>
+      </section>
+
+      <section class="zone controls">
+        <div id="log"></div>
+      </section>
+
+      <div class="controls">
+        <button id="end-turn-btn">ターン終了</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/game.js?v=1"></script>
+</body>
+</html>
