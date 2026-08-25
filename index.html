@@ -4,9 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>カードゲーム(仮)</title>
-  <link rel="stylesheet" href="css/style.css?v=1" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <!--
+    セーフティネット: 上の外部CSSが何らかの理由(パス間違い・キャッシュ等)で
+    読み込めなかった場合でも、画面の出し分け(.hidden)と最低限の見た目だけは
+    保たれるように、重要なルールだけをここに直接書いておく。
+  -->
+  <style>
+    .hidden { display: none !important; }
+    body { background:#14161b; color:#e8e6df; font-family: sans-serif; }
+    #fatal-error {
+      display: none; background:#3a1f1f; color:#ffb3b3; padding:12px 16px;
+      margin: 12px; border-radius:8px; font-size:13px; white-space:pre-wrap;
+    }
+  </style>
 </head>
 <body>
+  <div id="fatal-error"></div>
+
   <div id="mode-select">
     <h2>カードゲーム(仮)</h2>
     <p>対戦相手を選んでください</p>
@@ -20,6 +35,50 @@
         <small>手札を効率よく使い、有利な属性やとどめを狙って攻撃してくる相手です。</small>
       </button>
     </div>
+  </div>
+
+  <div id="builder-screen" class="hidden">
+    <header>
+      <h1>デッキ&能力の編集</h1>
+      <button id="quick-start-btn" class="secondary-btn">おまかせでそのまま開始</button>
+    </header>
+    <main>
+      <section class="zone">
+        <div class="builder-tabs">
+          <button class="tab-btn active" data-tab="deck">デッキ編集</button>
+          <button class="tab-btn" data-tab="abilities">能力編集</button>
+        </div>
+
+        <div id="deck-tab" class="tab-panel">
+          <div class="builder-toolbar">
+            <span>デッキ: <b id="deck-count-display">0</b> / 50</span>
+            <div>
+              <button id="deck-random-fill-btn" class="secondary-btn">AIにおまかせで残りを埋める</button>
+              <button id="deck-default-btn" class="secondary-btn">デフォルトデッキ(全ランダム)</button>
+              <button id="deck-reset-btn" class="secondary-btn">リセット</button>
+            </div>
+          </div>
+          <div id="card-pool" class="card-pool"></div>
+        </div>
+
+        <div id="abilities-tab" class="tab-panel hidden">
+          <div class="builder-toolbar">
+            <span>能力コスト: <b id="ability-cost-display">0</b> / 13</span>
+            <div>
+              <button id="ability-random-fill-btn" class="secondary-btn">AIにおまかせで残りを埋める</button>
+              <button id="ability-default-btn" class="secondary-btn">デフォルト構成(全ランダム)</button>
+              <button id="ability-reset-btn" class="secondary-btn">リセット</button>
+            </div>
+          </div>
+          <div id="ability-pool" class="ability-pool"></div>
+        </div>
+      </section>
+
+      <div class="controls">
+        <button id="back-to-mode-btn" class="secondary-btn">相手選択に戻る</button>
+        <button id="confirm-start-btn" disabled>この内容で対戦開始(デッキ50枚必要)</button>
+      </div>
+    </main>
   </div>
 
   <div id="game-screen" class="hidden">
@@ -59,6 +118,6 @@
     </main>
   </div>
 
-  <script src="js/game.js?v=1"></script>
+  <script src="js/game.js?v=2"></script>
 </body>
 </html>
