@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- index.html 自体がブラウザ/CDNにキャッシュされて古いまま表示され続けるのを防ぐ -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>カードゲーム(仮)</title>
   <link rel="stylesheet" href="css/style.css?v=2" />
   <!--
@@ -118,6 +122,6 @@
     </main>
   </div>
 
-  <script src="js/game.js?v=2"></script>
+  <script src="js/game.js?v=3"></script>
 </body>
 </html>
