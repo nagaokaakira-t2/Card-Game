@@ -8,12 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>カードゲーム(仮)</title>
-  <link rel="stylesheet" href="css/style.css?v=2" />
-  <!--
-    セーフティネット: 上の外部CSSが何らかの理由(パス間違い・キャッシュ等)で
-    読み込めなかった場合でも、画面の出し分け(.hidden)と最低限の見た目だけは
-    保たれるように、重要なルールだけをここに直接書いておく。
-  -->
+  <link rel="stylesheet" href="css/style.css?v=4" />
   <style>
     .hidden { display: none !important; }
     body { background:#14161b; color:#e8e6df; font-family: sans-serif; }
@@ -63,7 +58,8 @@
               <button id="deck-reset-btn" class="secondary-btn">リセット</button>
             </div>
           </div>
-          <div id="card-pool" class="card-pool"></div>
+          <!-- 属性ごとに列を分け、各列の中でクリーチャー/特殊効果もさらに分けて表示 -->
+          <div id="card-pool" class="card-pool-columns"></div>
         </div>
 
         <div id="abilities-tab" class="tab-panel hidden">
@@ -91,20 +87,52 @@
       <h1>カードゲーム(仮) - 試作版</h1>
       <div id="turn-indicator"></div>
     </header>
+
+    <div id="action-banner" class="action-banner"></div>
+
     <main>
-      <section class="zone">
-        <div class="zone-header">
-          <span>相手 HP: <b id="opponent-hp"></b> / 光: <b id="opponent-light"></b> / 山札: <b id="deck-count-opponent"></b>枚</span>
-          <span class="player-target" id="opponent-player-target">相手プレイヤーを攻撃</span>
+      <!-- 簡易盤面: 手札とは別に、HPや光を一目で確認できるパネル -->
+      <section class="board-panel">
+        <div class="board-row">
+          <span class="board-label">相手</span>
+          <div class="hp-bar-outer"><div class="hp-bar-inner" id="opponent-hp-bar"></div></div>
+          <span class="board-stat">HP <b id="opponent-hp"></b>/<span id="opponent-maxhp"></span></span>
+          <span class="board-stat">光 <b id="opponent-light"></b></span>
+          <span class="board-stat">山札 <b id="deck-count-opponent"></b></span>
+          <span class="board-stat">場 <b id="opponent-field-count"></b>/5</span>
+          <span class="player-target" id="opponent-player-target">プレイヤーを攻撃</span>
         </div>
+        <div class="board-row">
+          <span class="board-label">自分</span>
+          <div class="hp-bar-outer"><div class="hp-bar-inner self" id="self-hp-bar"></div></div>
+          <span class="board-stat">HP <b id="self-hp"></b>/<span id="self-maxhp"></span></span>
+          <span class="board-stat">光 <b id="self-light"></b></span>
+          <span class="board-stat">山札 <b id="deck-count-self"></b></span>
+          <span class="board-stat">場 <b id="self-field-count"></b>/5</span>
+          <span class="board-stat">手札 <b id="self-hand-count"></b></span>
+        </div>
+      </section>
+
+      <section class="zone">
+        <div class="zone-header"><span>相手の場</span></div>
         <div class="field" id="opponent-field"></div>
       </section>
 
       <section class="zone">
-        <div class="zone-header">
-          <span>自分 HP: <b id="self-hp"></b> / 光: <b id="self-light"></b> / 山札: <b id="deck-count-self"></b>枚</span>
-        </div>
+        <div class="zone-header"><span>自分の場</span></div>
         <div class="field" id="player-field"></div>
+      </section>
+
+      <!-- 選択中のカード/クリーチャーの詳細と、実行するかどうかの確認 -->
+      <section class="zone selection-panel" id="selection-panel">
+        <div class="zone-header"><span>選択中</span></div>
+        <div id="selection-content" class="selection-content">
+          <p class="selection-hint">手札のカード、または自分の場のクリーチャーを選んでください。</p>
+        </div>
+      </section>
+
+      <section class="zone">
+        <div class="zone-header"><span>自分の手札</span></div>
         <div class="hand" id="player-hand"></div>
       </section>
 
@@ -113,7 +141,8 @@
         <div class="abilities" id="self-abilities"></div>
       </section>
 
-      <section class="zone controls">
+      <section class="zone">
+        <div class="zone-header"><span>ログ</span></div>
         <div id="log"></div>
       </section>
 
@@ -123,6 +152,6 @@
     </main>
   </div>
 
-  <script src="js/game.js?v=4"></script>
+  <script src="js/game.js?v=7"></script>
 </body>
 </html>
