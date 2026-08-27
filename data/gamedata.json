@@ -1,29 +1,107 @@
 {
-  "version": 2,
+  "version": 3,
   "elements": [
     {
       "id": "fire",
-      "name": "火"
+      "name": "火",
+      "description": "焼き尽くす速攻。高攻撃・低HPで相手クリーチャーを直接焼き払う。",
+      "kanji_pool": [
+        "炎",
+        "灼",
+        "焔",
+        "焼",
+        "熾",
+        "燦",
+        "煌",
+        "灰",
+        "焦",
+        "陽"
+      ]
     },
     {
       "id": "wind",
-      "name": "風"
+      "name": "風",
+      "description": "疾風の連撃。速攻持ちや育つクリーチャーで手数と勢いを稼ぐ。",
+      "kanji_pool": [
+        "風",
+        "疾",
+        "翔",
+        "颯",
+        "旋",
+        "空",
+        "翼",
+        "嵐",
+        "羽",
+        "迅"
+      ]
     },
     {
       "id": "water",
-      "name": "水"
+      "name": "水",
+      "description": "癒しと粘り。高HPで場に居座り、回復を軸にした持久戦を挑む。",
+      "kanji_pool": [
+        "水",
+        "波",
+        "潮",
+        "氷",
+        "滴",
+        "泡",
+        "流",
+        "淵",
+        "澄",
+        "涼"
+      ]
     },
     {
       "id": "earth",
-      "name": "土"
+      "name": "土",
+      "description": "不動の要塞。最高クラスのHPと光の安定供給でじっくり構える。",
+      "kanji_pool": [
+        "土",
+        "岩",
+        "根",
+        "山",
+        "地",
+        "岳",
+        "礫",
+        "砂",
+        "苔",
+        "重"
+      ]
     },
     {
       "id": "heaven",
-      "name": "天"
+      "name": "天",
+      "description": "捧げて加速する。自傷と引き換えに光やドローを加速させる。",
+      "kanji_pool": [
+        "天",
+        "光",
+        "聖",
+        "輝",
+        "星",
+        "翔",
+        "神",
+        "澄",
+        "祈",
+        "昇"
+      ]
     },
     {
       "id": "nether",
-      "name": "冥"
+      "name": "冥",
+      "description": "喰らい、削る代償の力。除去や妨害を代償付きで行う。",
+      "kanji_pool": [
+        "冥",
+        "闇",
+        "影",
+        "呪",
+        "亡",
+        "骸",
+        "夜",
+        "蝕",
+        "黒",
+        "淵"
+      ]
     }
   ],
   "elementCycle": [
@@ -39,449 +117,750 @@
   "cards": [
     {
       "id": "fire-c-001",
-      "name": "灼の番人",
+      "name": "燦の精",
       "type": "creature",
       "element": "fire",
       "cost": 1,
       "attack": 2,
       "health": 2,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が1上がる。"
+      "text": "召喚時、相手のクリーチャー1体に1ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-c-002",
-      "name": "焼の精",
+      "name": "焦の騎士",
       "type": "creature",
       "element": "fire",
       "cost": 2,
-      "attack": 3,
-      "health": 3,
+      "attack": 4,
+      "health": 2,
       "traits": [],
-      "text": ""
+      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-c-003",
-      "name": "灼の王",
-      "type": "creature",
-      "element": "fire",
-      "cost": 3,
-      "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。"
-    },
-    {
-      "id": "fire-c-004",
-      "name": "灼の子",
-      "type": "creature",
-      "element": "fire",
-      "cost": 4,
-      "attack": 4,
-      "health": 6,
-      "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。"
-    },
-    {
-      "id": "fire-c-005",
       "name": "焦の子",
       "type": "creature",
       "element": "fire",
-      "cost": 5,
-      "attack": 7,
-      "health": 5,
+      "cost": 3,
+      "attack": 4,
+      "health": 4,
       "traits": [],
-      "text": ""
+      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-004",
+      "name": "灼の眷属",
+      "type": "creature",
+      "element": "fire",
+      "cost": 4,
+      "attack": 6,
+      "health": 4,
+      "traits": [],
+      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-005",
+      "name": "陽の騎士",
+      "type": "creature",
+      "element": "fire",
+      "cost": 5,
+      "attack": 9,
+      "health": 3,
+      "traits": [],
+      "text": "ターン終了時、相手のクリーチャー1体に3ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreatureOnTurnEnd",
+        "trigger": "turnEnd",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-c-006",
-      "name": "煌の眷属",
+      "name": "陽の使い",
       "type": "creature",
       "element": "fire",
       "cost": 6,
-      "attack": 7,
-      "health": 7,
+      "attack": 9,
+      "health": 5,
       "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
+      "text": "攻撃時、相手のクリーチャー1体に追加で4ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-c-007",
-      "name": "炎の巫女",
-      "type": "creature",
-      "element": "fire",
-      "cost": 1,
-      "attack": 2,
-      "health": 2,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。"
-    },
-    {
-      "id": "fire-c-008",
-      "name": "熾の精",
-      "type": "creature",
-      "element": "fire",
-      "cost": 2,
-      "attack": 3,
-      "health": 3,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。"
-    },
-    {
-      "id": "fire-c-009",
-      "name": "灼の獣",
-      "type": "creature",
-      "element": "fire",
-      "cost": 3,
-      "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。"
-    },
-    {
-      "id": "fire-c-010",
-      "name": "燦の巨人",
-      "type": "creature",
-      "element": "fire",
-      "cost": 4,
-      "attack": 5,
-      "health": 5,
-      "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。"
-    },
-    {
-      "id": "fire-c-011",
-      "name": "灰の術師",
-      "type": "creature",
-      "element": "fire",
-      "cost": 5,
-      "attack": 5,
-      "health": 7,
-      "traits": [],
-      "text": "このカードが破壊された時、自分のHPを4回復する。"
-    },
-    {
-      "id": "fire-c-012",
-      "name": "灼の術師",
-      "type": "creature",
-      "element": "fire",
-      "cost": 6,
-      "attack": 6,
-      "health": 8,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。"
-    },
-    {
-      "id": "fire-c-013",
-      "name": "陽の子",
-      "type": "creature",
-      "element": "fire",
-      "cost": 1,
-      "attack": 2,
-      "health": 2,
-      "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に1ダメージを与える。"
-    },
-    {
-      "id": "fire-c-014",
-      "name": "焼の守護者",
-      "type": "creature",
-      "element": "fire",
-      "cost": 2,
-      "attack": 4,
-      "health": 2,
-      "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が1上がる。"
-    },
-    {
-      "id": "fire-c-015",
-      "name": "灼の戦士",
-      "type": "creature",
-      "element": "fire",
-      "cost": 3,
-      "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。"
-    },
-    {
-      "id": "fire-c-016",
-      "name": "焔の斥候",
-      "type": "creature",
-      "element": "fire",
-      "cost": 4,
-      "attack": 5,
-      "health": 5,
-      "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
-    },
-    {
-      "id": "fire-c-017",
-      "name": "灼の巨人",
-      "type": "creature",
-      "element": "fire",
-      "cost": 5,
-      "attack": 6,
-      "health": 6,
-      "traits": [],
-      "text": ""
-    },
-    {
-      "id": "fire-c-018",
-      "name": "焼の巫女",
-      "type": "creature",
-      "element": "fire",
-      "cost": 6,
-      "attack": 7,
-      "health": 7,
-      "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
-    },
-    {
-      "id": "fire-c-019",
-      "name": "焦の眷属",
-      "type": "creature",
-      "element": "fire",
-      "cost": 1,
-      "attack": 2,
-      "health": 2,
-      "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に1ダメージを与える。"
-    },
-    {
-      "id": "fire-c-020",
       "name": "焼の使い",
       "type": "creature",
       "element": "fire",
-      "cost": 2,
+      "cost": 1,
       "attack": 3,
+      "health": 1,
+      "traits": [],
+      "text": "召喚時、相手のクリーチャー1体に1ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-008",
+      "name": "煌の精",
+      "type": "creature",
+      "element": "fire",
+      "cost": 2,
+      "attack": 4,
+      "health": 2,
+      "traits": [],
+      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-009",
+      "name": "焦の巫女",
+      "type": "creature",
+      "element": "fire",
+      "cost": 3,
+      "attack": 5,
       "health": 3,
       "traits": [],
-      "text": "このカードが破壊された時、自分のHPを3回復する。"
+      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-010",
+      "name": "焼の斥候",
+      "type": "creature",
+      "element": "fire",
+      "cost": 4,
+      "attack": 6,
+      "health": 4,
+      "traits": [],
+      "text": "ターン終了時、相手のクリーチャー1体に3ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreatureOnTurnEnd",
+        "trigger": "turnEnd",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-011",
+      "name": "陽の子",
+      "type": "creature",
+      "element": "fire",
+      "cost": 5,
+      "attack": 8,
+      "health": 4,
+      "traits": [],
+      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-012",
+      "name": "燦の従者",
+      "type": "creature",
+      "element": "fire",
+      "cost": 6,
+      "attack": 9,
+      "health": 5,
+      "traits": [],
+      "text": "攻撃時、相手のクリーチャー1体に追加で4ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-013",
+      "name": "熾の眷属",
+      "type": "creature",
+      "element": "fire",
+      "cost": 1,
+      "attack": 3,
+      "health": 1,
+      "traits": [],
+      "text": "ターン終了時、相手のクリーチャー1体に1ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreatureOnTurnEnd",
+        "trigger": "turnEnd",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-014",
+      "name": "焼の獣",
+      "type": "creature",
+      "element": "fire",
+      "cost": 2,
+      "attack": 4,
+      "health": 2,
+      "traits": [],
+      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-015",
+      "name": "熾の巨人",
+      "type": "creature",
+      "element": "fire",
+      "cost": 3,
+      "attack": 6,
+      "health": 2,
+      "traits": [],
+      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-016",
+      "name": "煌の巫女",
+      "type": "creature",
+      "element": "fire",
+      "cost": 4,
+      "attack": 7,
+      "health": 3,
+      "traits": [],
+      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-017",
+      "name": "灰の賢者",
+      "type": "creature",
+      "element": "fire",
+      "cost": 5,
+      "attack": 7,
+      "health": 5,
+      "traits": [],
+      "text": "ターン終了時、相手のクリーチャー1体に3ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreatureOnTurnEnd",
+        "trigger": "turnEnd",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-018",
+      "name": "焦の王",
+      "type": "creature",
+      "element": "fire",
+      "cost": 6,
+      "attack": 10,
+      "health": 4,
+      "traits": [],
+      "text": ""
+    },
+    {
+      "id": "fire-c-019",
+      "name": "燦の斥候",
+      "type": "creature",
+      "element": "fire",
+      "cost": 1,
+      "attack": 3,
+      "health": 1,
+      "traits": [],
+      "text": "攻撃時、相手のクリーチャー1体に追加で1ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "fire-c-020",
+      "name": "灰の獣",
+      "type": "creature",
+      "element": "fire",
+      "cost": 2,
+      "attack": 4,
+      "health": 2,
+      "traits": [],
+      "text": ""
     },
     {
       "id": "fire-s-001",
-      "name": "熾の加護",
+      "name": "灰の加護",
       "type": "special",
       "element": "fire",
       "cost": 1,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "相手のクリーチャー1体に1ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-002",
-      "name": "陽の祈り",
+      "name": "熾の掟",
       "type": "special",
       "element": "fire",
       "cost": 2,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "自分のクリーチャー1体の攻撃力を1上げる。",
+      "effect": {
+        "kind": "buffAllyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-003",
-      "name": "灰の陣",
+      "name": "灰の術",
       "type": "special",
       "element": "fire",
       "cost": 3,
       "traits": [],
-      "text": "相手のクリーチャー全体に2ダメージを与える。"
+      "text": "相手のクリーチャー全体に2ダメージを与える。",
+      "effect": {
+        "kind": "aoeDamageEnemyCreatures",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-004",
-      "name": "焔の術",
+      "name": "燦の一撃",
       "type": "special",
       "element": "fire",
       "cost": 4,
       "traits": [],
-      "text": "自分の光を1増やす。"
+      "text": "自分のクリーチャー1体の攻撃力を2上げる。",
+      "effect": {
+        "kind": "buffAllyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-005",
-      "name": "焼の裂傷",
+      "name": "燦の癒し",
       "type": "special",
       "element": "fire",
       "cost": 5,
       "traits": [],
-      "text": "自分のクリーチャー1体の攻撃力を2上げる。"
+      "text": "相手のクリーチャー全体に3ダメージを与える。",
+      "effect": {
+        "kind": "aoeDamageEnemyCreatures",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-006",
-      "name": "陽の陣",
+      "name": "灰の一撃",
       "type": "special",
       "element": "fire",
       "cost": 1,
       "traits": [],
-      "text": "自分のHPを2回復する。"
+      "text": "相手のクリーチャー1体に1ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-007",
-      "name": "燦の嵐",
+      "name": "熾の癒し",
       "type": "special",
       "element": "fire",
       "cost": 2,
       "traits": [],
-      "text": "自分の光を1増やす。"
+      "text": "相手のクリーチャー全体に2ダメージを与える。",
+      "effect": {
+        "kind": "aoeDamageEnemyCreatures",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-008",
-      "name": "焦の波動",
+      "name": "煌の陣",
       "type": "special",
       "element": "fire",
       "cost": 3,
       "traits": [],
-      "text": "自分のクリーチャー1体のHPを3回復する。"
+      "text": "自分のクリーチャー1体の攻撃力を2上げる。",
+      "effect": {
+        "kind": "buffAllyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-009",
-      "name": "炎の加護",
+      "name": "焔の波動",
       "type": "special",
       "element": "fire",
       "cost": 4,
       "traits": [],
-      "text": "自分の光を1増やす。"
+      "text": "相手のクリーチャー1体に3ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "fire-s-010",
-      "name": "焔の陣",
+      "name": "煌の裂傷",
       "type": "special",
       "element": "fire",
       "cost": 5,
       "traits": [],
-      "text": "自分のクリーチャー1体のHPを4回復する。"
+      "text": "相手のクリーチャー1体に3ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-c-001",
-      "name": "翼の戦士",
+      "name": "翼の斥候",
       "type": "creature",
       "element": "wind",
       "cost": 1,
       "attack": 2,
       "health": 2,
-      "traits": [],
-      "text": "ターン終了時、相手のクリーチャー1体に1ダメージを与える。"
+      "traits": [
+        "速攻"
+      ],
+      "text": "召喚時、手札を1枚引く。",
+      "effect": {
+        "kind": "drawCards",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-c-002",
-      "name": "羽の魔物",
+      "name": "疾の巫女",
       "type": "creature",
       "element": "wind",
       "cost": 2,
-      "attack": 4,
-      "health": 2,
-      "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。"
+      "attack": 3,
+      "health": 3,
+      "traits": [
+        "速攻"
+      ],
+      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-c-003",
-      "name": "疾の術師",
+      "name": "迅の巫女",
       "type": "creature",
       "element": "wind",
       "cost": 3,
       "attack": 4,
       "health": 4,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。"
+      "text": "自分のターン開始時、このカードの攻撃力が2上がる。",
+      "effect": {
+        "kind": "buffSelfAtkOnTurnStart",
+        "trigger": "turnStart",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-c-004",
-      "name": "疾の守護者",
-      "type": "creature",
-      "element": "wind",
-      "cost": 4,
-      "attack": 5,
-      "health": 5,
-      "traits": [],
-      "text": "ターン終了時、相手のクリーチャー1体に3ダメージを与える。"
-    },
-    {
-      "id": "wind-c-005",
-      "name": "風の魔物",
-      "type": "creature",
-      "element": "wind",
-      "cost": 5,
-      "attack": 7,
-      "health": 5,
-      "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。"
-    },
-    {
-      "id": "wind-c-006",
-      "name": "羽の騎士",
-      "type": "creature",
-      "element": "wind",
-      "cost": 6,
-      "attack": 8,
-      "health": 6,
-      "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
-    },
-    {
-      "id": "wind-c-007",
-      "name": "羽の巨人",
-      "type": "creature",
-      "element": "wind",
-      "cost": 1,
-      "attack": 2,
-      "health": 2,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。"
-    },
-    {
-      "id": "wind-c-008",
-      "name": "翔の術師",
-      "type": "creature",
-      "element": "wind",
-      "cost": 2,
-      "attack": 4,
-      "health": 2,
-      "traits": [],
-      "text": ""
-    },
-    {
-      "id": "wind-c-009",
-      "name": "風の巨人",
-      "type": "creature",
-      "element": "wind",
-      "cost": 3,
-      "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。"
-    },
-    {
-      "id": "wind-c-010",
-      "name": "疾の斥候",
+      "name": "空の巨人",
       "type": "creature",
       "element": "wind",
       "cost": 4,
       "attack": 6,
       "health": 4,
       "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
+      "text": ""
     },
     {
-      "id": "wind-c-011",
-      "name": "颯の使い",
+      "id": "wind-c-005",
+      "name": "羽の巨人",
       "type": "creature",
       "element": "wind",
       "cost": 5,
-      "attack": 5,
-      "health": 7,
+      "attack": 7,
+      "health": 5,
       "traits": [],
-      "text": "召喚時、自分のHPを4回復する。"
+      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "wind-c-012",
-      "name": "疾の狩人",
+      "id": "wind-c-006",
+      "name": "羽の戦士",
       "type": "creature",
       "element": "wind",
       "cost": 6,
       "attack": 8,
       "health": 6,
       "traits": [],
-      "text": ""
+      "text": "召喚時、手札を1枚引く。",
+      "effect": {
+        "kind": "drawCards",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "wind-c-013",
-      "name": "翔の精",
+      "id": "wind-c-007",
+      "name": "翼の使い",
       "type": "creature",
       "element": "wind",
       "cost": 1,
@@ -491,135 +870,409 @@
       "text": ""
     },
     {
-      "id": "wind-c-014",
-      "name": "翔の魔物",
+      "id": "wind-c-008",
+      "name": "疾の踊り子",
       "type": "creature",
       "element": "wind",
       "cost": 2,
       "attack": 3,
       "health": 3,
       "traits": [],
-      "text": "このカードが破壊された時、自分のHPを3回復する。"
+      "text": "自分のターン開始時、このカードの攻撃力が1上がる。",
+      "effect": {
+        "kind": "buffSelfAtkOnTurnStart",
+        "trigger": "turnStart",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "wind-c-015",
-      "name": "颯の術師",
+      "id": "wind-c-009",
+      "name": "羽の騎士",
       "type": "creature",
       "element": "wind",
       "cost": 3,
-      "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が2上がる。"
+      "attack": 5,
+      "health": 3,
+      "traits": [
+        "速攻"
+      ],
+      "text": "召喚時、手札を1枚引く。",
+      "effect": {
+        "kind": "drawCards",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "wind-c-016",
-      "name": "旋の戦士",
+      "id": "wind-c-010",
+      "name": "颯の巨人",
       "type": "creature",
       "element": "wind",
       "cost": 4,
-      "attack": 6,
-      "health": 4,
+      "attack": 5,
+      "health": 5,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。"
+      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "wind-c-017",
-      "name": "嵐の亡霊",
+      "id": "wind-c-011",
+      "name": "迅の斥候",
       "type": "creature",
       "element": "wind",
       "cost": 5,
-      "attack": 6,
-      "health": 6,
+      "attack": 7,
+      "health": 5,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が2上がる。"
+      "text": "自分のターン開始時、このカードの攻撃力が2上がる。",
+      "effect": {
+        "kind": "buffSelfAtkOnTurnStart",
+        "trigger": "turnStart",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "wind-c-018",
-      "name": "颯の獣",
+      "id": "wind-c-012",
+      "name": "嵐の狩人",
       "type": "creature",
       "element": "wind",
       "cost": 6,
-      "attack": 7,
-      "health": 7,
-      "traits": [],
-      "text": ""
+      "attack": 8,
+      "health": 6,
+      "traits": [
+        "速攻"
+      ],
+      "text": "自分のターン開始時、このカードの攻撃力が3上がる。",
+      "effect": {
+        "kind": "buffSelfAtkOnTurnStart",
+        "trigger": "turnStart",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "wind-c-019",
-      "name": "颯の王",
+      "id": "wind-c-013",
+      "name": "空の魔物",
       "type": "creature",
       "element": "wind",
       "cost": 1,
       "attack": 2,
       "health": 2,
       "traits": [],
-      "text": "召喚時、自分のHPを2回復する。"
+      "text": "攻撃時、相手のクリーチャー1体に追加で1ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "wind-c-020",
-      "name": "風の眷属",
+      "id": "wind-c-014",
+      "name": "颯の亡霊",
       "type": "creature",
       "element": "wind",
       "cost": 2,
-      "attack": 2,
-      "health": 4,
+      "attack": 3,
+      "health": 3,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。"
+      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "wind-c-015",
+      "name": "羽の守護者",
+      "type": "creature",
+      "element": "wind",
+      "cost": 3,
+      "attack": 5,
+      "health": 3,
+      "traits": [],
+      "text": ""
+    },
+    {
+      "id": "wind-c-016",
+      "name": "旋の亡霊",
+      "type": "creature",
+      "element": "wind",
+      "cost": 4,
+      "attack": 5,
+      "health": 5,
+      "traits": [],
+      "text": "自分のターン開始時、このカードの攻撃力が2上がる。",
+      "effect": {
+        "kind": "buffSelfAtkOnTurnStart",
+        "trigger": "turnStart",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "wind-c-017",
+      "name": "羽の術師",
+      "type": "creature",
+      "element": "wind",
+      "cost": 5,
+      "attack": 7,
+      "health": 5,
+      "traits": [
+        "速攻"
+      ],
+      "text": "自分のターン開始時、このカードの攻撃力が2上がる。",
+      "effect": {
+        "kind": "buffSelfAtkOnTurnStart",
+        "trigger": "turnStart",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "wind-c-018",
+      "name": "颯の眷属",
+      "type": "creature",
+      "element": "wind",
+      "cost": 6,
+      "attack": 8,
+      "health": 6,
+      "traits": [
+        "速攻"
+      ],
+      "text": "攻撃時、相手のクリーチャー1体に追加で4ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "wind-c-019",
+      "name": "羽の狩人",
+      "type": "creature",
+      "element": "wind",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "traits": [
+        "速攻"
+      ],
+      "text": "自分のターン開始時、このカードの攻撃力が1上がる。",
+      "effect": {
+        "kind": "buffSelfAtkOnTurnStart",
+        "trigger": "turnStart",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "wind-c-020",
+      "name": "旋の狩人",
+      "type": "creature",
+      "element": "wind",
+      "cost": 2,
+      "attack": 3,
+      "health": 3,
+      "traits": [],
+      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。",
+      "effect": {
+        "kind": "bonusAttackDamage",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-001",
-      "name": "空の加護",
+      "name": "嵐の祈り",
       "type": "special",
       "element": "wind",
       "cost": 1,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-002",
-      "name": "旋の波動",
+      "name": "空の加護",
       "type": "special",
       "element": "wind",
       "cost": 2,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "手札を1枚引く。",
+      "effect": {
+        "kind": "drawCards",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-003",
-      "name": "羽の癒し",
+      "name": "颯の波動",
       "type": "special",
       "element": "wind",
       "cost": 3,
       "traits": [],
-      "text": "相手のクリーチャー全体に2ダメージを与える。"
+      "text": "手札を1枚引く。",
+      "effect": {
+        "kind": "drawCards",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-004",
-      "name": "颯の波動",
+      "name": "迅の掟",
       "type": "special",
       "element": "wind",
       "cost": 4,
       "traits": [],
-      "text": "自分のHPを4回復する。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-005",
-      "name": "颯の加護",
+      "name": "疾の加護",
       "type": "special",
       "element": "wind",
       "cost": 5,
       "traits": [],
-      "text": "自分のクリーチャー1体のHPを4回復する。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-006",
-      "name": "翼の祈り",
+      "name": "翔の陣",
       "type": "special",
       "element": "wind",
       "cost": 1,
       "traits": [],
-      "text": "自分のHPを2回復する。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-007",
@@ -628,498 +1281,949 @@
       "element": "wind",
       "cost": 2,
       "traits": [],
-      "text": "相手のクリーチャー1体に2ダメージを与える。"
+      "text": "自分のクリーチャー1体の攻撃力を1上げる。",
+      "effect": {
+        "kind": "buffAllyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-008",
-      "name": "疾の一撃",
+      "name": "疾の癒し",
       "type": "special",
       "element": "wind",
       "cost": 3,
       "traits": [],
-      "text": "自分のHPを3回復する。"
+      "text": "手札を1枚引く。",
+      "effect": {
+        "kind": "drawCards",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-009",
-      "name": "颯の嵐",
+      "name": "翔の一撃",
       "type": "special",
       "element": "wind",
       "cost": 4,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "手札を1枚引く。",
+      "effect": {
+        "kind": "drawCards",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "wind-s-010",
-      "name": "羽の波動",
+      "name": "嵐の癒し",
       "type": "special",
       "element": "wind",
       "cost": 5,
       "traits": [],
-      "text": "自分の光を1増やす。"
+      "text": "自分のクリーチャー1体の攻撃力を2上げる。",
+      "effect": {
+        "kind": "buffAllyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-001",
-      "name": "流の巫女",
+      "name": "涼の狩人",
       "type": "creature",
       "element": "water",
       "cost": 1,
       "attack": 2,
-      "health": 2,
+      "health": 3,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が1上がる。"
+      "text": "このカードが破壊された時、自分のHPを2回復する。",
+      "effect": {
+        "kind": "healPlayerOnDeath",
+        "trigger": "onDeath",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-002",
-      "name": "波の従者",
+      "name": "澄の術師",
       "type": "creature",
       "element": "water",
       "cost": 2,
-      "attack": 3,
-      "health": 3,
+      "attack": 2,
+      "health": 5,
       "traits": [],
-      "text": ""
+      "text": "召喚時、自分のHPを3回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-003",
-      "name": "波の使い",
+      "name": "波の亡霊",
       "type": "creature",
       "element": "water",
       "cost": 3,
       "attack": 4,
-      "health": 4,
+      "health": 5,
       "traits": [],
-      "text": ""
+      "text": "召喚時、自分のHPを3回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-004",
-      "name": "水の獣",
+      "name": "氷の子",
       "type": "creature",
       "element": "water",
       "cost": 4,
-      "attack": 6,
-      "health": 4,
+      "attack": 3,
+      "health": 8,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が2上がる。"
+      "text": "召喚時、自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-005",
-      "name": "潮の賢者",
+      "name": "澄の眷属",
       "type": "creature",
       "element": "water",
       "cost": 5,
-      "attack": 6,
-      "health": 6,
+      "attack": 5,
+      "health": 8,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が2上がる。"
+      "text": "召喚時、自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-006",
-      "name": "流の使い",
+      "name": "澄の賢者",
       "type": "creature",
       "element": "water",
       "cost": 6,
       "attack": 6,
-      "health": 8,
+      "health": 9,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に4ダメージを与える。"
+      "text": "召喚時、自分のHPを5回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-007",
-      "name": "流の魔物",
+      "name": "泡の従者",
       "type": "creature",
       "element": "water",
       "cost": 1,
       "attack": 2,
-      "health": 2,
-      "traits": [],
-      "text": "ターン終了時、相手のクリーチャー1体に1ダメージを与える。"
-    },
-    {
-      "id": "water-c-008",
-      "name": "滴の賢者",
-      "type": "creature",
-      "element": "water",
-      "cost": 2,
-      "attack": 3,
       "health": 3,
       "traits": [],
       "text": ""
     },
     {
+      "id": "water-c-008",
+      "name": "澄の精",
+      "type": "creature",
+      "element": "water",
+      "cost": 2,
+      "attack": 3,
+      "health": 4,
+      "traits": [],
+      "text": "このカードが破壊された時、自分のHPを3回復する。",
+      "effect": {
+        "kind": "healPlayerOnDeath",
+        "trigger": "onDeath",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
       "id": "water-c-009",
-      "name": "淵の精",
+      "name": "水の従者",
       "type": "creature",
       "element": "water",
       "cost": 3,
       "attack": 4,
-      "health": 4,
+      "health": 5,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が2上がる。"
+      "text": "ターン終了時、相手のクリーチャー1体に2ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreatureOnTurnEnd",
+        "trigger": "turnEnd",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-010",
-      "name": "水の王",
+      "name": "潮の巫女",
       "type": "creature",
       "element": "water",
       "cost": 4,
-      "attack": 5,
-      "health": 5,
+      "attack": 4,
+      "health": 7,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。"
+      "text": "ターン終了時、相手のクリーチャー1体に3ダメージを与える。",
+      "effect": {
+        "kind": "damageEnemyCreatureOnTurnEnd",
+        "trigger": "turnEnd",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-011",
-      "name": "泡の使い",
+      "name": "波の術師",
       "type": "creature",
       "element": "water",
       "cost": 5,
-      "attack": 5,
-      "health": 7,
-      "traits": [],
-      "text": "ターン終了時、相手のクリーチャー1体に3ダメージを与える。"
-    },
-    {
-      "id": "water-c-012",
-      "name": "澄の亡霊",
-      "type": "creature",
-      "element": "water",
-      "cost": 6,
-      "attack": 6,
-      "health": 8,
+      "attack": 4,
+      "health": 9,
       "traits": [],
       "text": ""
     },
     {
+      "id": "water-c-012",
+      "name": "淵の騎士",
+      "type": "creature",
+      "element": "water",
+      "cost": 6,
+      "attack": 6,
+      "health": 9,
+      "traits": [],
+      "text": "召喚時、自分のHPを5回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
       "id": "water-c-013",
-      "name": "波の巫女",
+      "name": "氷の魔物",
       "type": "creature",
       "element": "water",
       "cost": 1,
       "attack": 2,
-      "health": 2,
+      "health": 3,
       "traits": [],
-      "text": "召喚時、自分のHPを2回復する。"
+      "text": "召喚時、自分のHPを2回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-014",
-      "name": "氷の戦士",
+      "name": "淵の術師",
       "type": "creature",
       "element": "water",
       "cost": 2,
-      "attack": 3,
-      "health": 3,
+      "attack": 2,
+      "health": 5,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が1上がる。"
+      "text": ""
     },
     {
       "id": "water-c-015",
-      "name": "涼の巨人",
+      "name": "波の従者",
       "type": "creature",
       "element": "water",
       "cost": 3,
       "attack": 3,
-      "health": 5,
+      "health": 6,
       "traits": [],
-      "text": "召喚時、自分のHPを3回復する。"
+      "text": ""
     },
     {
       "id": "water-c-016",
-      "name": "流の王",
+      "name": "涼の亡霊",
       "type": "creature",
       "element": "water",
       "cost": 4,
-      "attack": 5,
-      "health": 5,
+      "attack": 4,
+      "health": 7,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。"
+      "text": "召喚時、自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-017",
-      "name": "滴の子",
+      "name": "淵の亡霊",
       "type": "creature",
       "element": "water",
       "cost": 5,
       "attack": 6,
-      "health": 6,
+      "health": 7,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。"
+      "text": ""
     },
     {
       "id": "water-c-018",
-      "name": "氷の魔物",
+      "name": "滴の術師",
       "type": "creature",
       "element": "water",
       "cost": 6,
       "attack": 7,
-      "health": 7,
+      "health": 8,
       "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
+      "text": "召喚時、自分のHPを5回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-019",
-      "name": "淵の踊り子",
+      "name": "淵の精",
       "type": "creature",
       "element": "water",
       "cost": 1,
       "attack": 2,
-      "health": 2,
+      "health": 3,
       "traits": [],
-      "text": "召喚時、自分のHPを2回復する。"
+      "text": "このカードが破壊された時、自分のHPを2回復する。",
+      "effect": {
+        "kind": "healPlayerOnDeath",
+        "trigger": "onDeath",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-c-020",
-      "name": "水の従者",
+      "name": "泡の獣",
       "type": "creature",
       "element": "water",
       "cost": 2,
       "attack": 3,
-      "health": 3,
+      "health": 4,
       "traits": [],
-      "text": "召喚時、自分のHPを3回復する。"
+      "text": "このカードが破壊された時、自分のHPを3回復する。",
+      "effect": {
+        "kind": "healPlayerOnDeath",
+        "trigger": "onDeath",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-001",
-      "name": "波の裂傷",
+      "name": "氷の術",
       "type": "special",
       "element": "water",
       "cost": 1,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "相手のクリーチャー1体の攻撃力を1下げる。",
+      "effect": {
+        "kind": "debuffEnemyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-002",
-      "name": "澄の術",
+      "name": "潮の祈り",
       "type": "special",
       "element": "water",
       "cost": 2,
       "traits": [],
-      "text": "自分の光を1増やす。"
+      "text": "自分のクリーチャー1体のHPを3回復する。",
+      "effect": {
+        "kind": "healAllyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-003",
-      "name": "泡の加護",
+      "name": "潮の波動",
       "type": "special",
       "element": "water",
       "cost": 3,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "自分のクリーチャー1体のHPを3回復する。",
+      "effect": {
+        "kind": "healAllyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-004",
-      "name": "泡の術",
+      "name": "波の陣",
       "type": "special",
       "element": "water",
       "cost": 4,
       "traits": [],
-      "text": "自分の光を1増やす。"
+      "text": "相手のクリーチャー1体の攻撃力を2下げる。",
+      "effect": {
+        "kind": "debuffEnemyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-005",
-      "name": "淵の裂傷",
+      "name": "潮の嵐",
       "type": "special",
       "element": "water",
       "cost": 5,
       "traits": [],
-      "text": "自分のクリーチャー1体の攻撃力を2上げる。"
+      "text": "自分のクリーチャー1体のHPを4回復する。",
+      "effect": {
+        "kind": "healAllyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-006",
-      "name": "涼の裂傷",
+      "name": "流の裂傷",
       "type": "special",
       "element": "water",
       "cost": 1,
       "traits": [],
-      "text": "相手のクリーチャー1体に1ダメージを与える。"
+      "text": "自分のHPを2回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-007",
-      "name": "波の癒し",
+      "name": "流の嵐",
       "type": "special",
       "element": "water",
       "cost": 2,
       "traits": [],
-      "text": "自分のクリーチャー1体の攻撃力を1上げる。"
+      "text": "自分のHPを3回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-008",
-      "name": "波の加護",
+      "name": "波の祈り",
       "type": "special",
       "element": "water",
       "cost": 3,
       "traits": [],
-      "text": "自分の光を1増やす。"
+      "text": "自分のクリーチャー1体のHPを3回復する。",
+      "effect": {
+        "kind": "healAllyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-009",
-      "name": "滴の術",
+      "name": "澄の波動",
       "type": "special",
       "element": "water",
       "cost": 4,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "water-s-010",
-      "name": "泡の嵐",
+      "name": "水の陣",
       "type": "special",
       "element": "water",
       "cost": 5,
       "traits": [],
-      "text": "自分のクリーチャー1体の攻撃力を2上げる。"
+      "text": "自分のクリーチャー1体のHPを4回復する。",
+      "effect": {
+        "kind": "healAllyCreature",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-001",
-      "name": "苔の狩人",
+      "name": "重の守護者",
       "type": "creature",
       "element": "earth",
       "cost": 1,
       "attack": 2,
-      "health": 2,
+      "health": 4,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に1ダメージを与える。"
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。",
+      "effect": {
+        "kind": "passiveLightGain",
+        "trigger": "passive",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-002",
-      "name": "岩の賢者",
+      "name": "山の騎士",
       "type": "creature",
       "element": "earth",
       "cost": 2,
-      "attack": 3,
-      "health": 3,
+      "attack": 2,
+      "health": 6,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。"
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。",
+      "effect": {
+        "kind": "passiveLightGain",
+        "trigger": "passive",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-003",
+      "name": "根の魔物",
+      "type": "creature",
+      "element": "earth",
+      "cost": 3,
+      "attack": 4,
+      "health": 6,
+      "traits": [],
+      "text": ""
+    },
+    {
+      "id": "earth-c-004",
+      "name": "地の戦士",
+      "type": "creature",
+      "element": "earth",
+      "cost": 4,
+      "attack": 3,
+      "health": 9,
+      "traits": [],
+      "text": ""
+    },
+    {
+      "id": "earth-c-005",
+      "name": "重の狩人",
+      "type": "creature",
+      "element": "earth",
+      "cost": 5,
+      "attack": 5,
+      "health": 9,
+      "traits": [],
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。",
+      "effect": {
+        "kind": "passiveLightGain",
+        "trigger": "passive",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "earth-c-006",
+      "name": "土の巫女",
+      "type": "creature",
+      "element": "earth",
+      "cost": 6,
+      "attack": 5,
+      "health": 11,
+      "traits": [],
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。",
+      "effect": {
+        "kind": "passiveLightGain",
+        "trigger": "passive",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "earth-c-007",
+      "name": "土の獣",
+      "type": "creature",
+      "element": "earth",
+      "cost": 1,
+      "attack": 2,
+      "health": 4,
+      "traits": [],
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。",
+      "effect": {
+        "kind": "passiveLightGain",
+        "trigger": "passive",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "earth-c-008",
+      "name": "山の獣",
+      "type": "creature",
+      "element": "earth",
+      "cost": 2,
+      "attack": 2,
+      "health": 6,
+      "traits": [],
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。",
+      "effect": {
+        "kind": "passiveLightGain",
+        "trigger": "passive",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "earth-c-009",
       "name": "土の踊り子",
       "type": "creature",
       "element": "earth",
       "cost": 3,
       "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
-    },
-    {
-      "id": "earth-c-004",
-      "name": "根の従者",
-      "type": "creature",
-      "element": "earth",
-      "cost": 4,
-      "attack": 5,
-      "health": 5,
-      "traits": [],
-      "text": "このカードが破壊された時、自分のHPを4回復する。"
-    },
-    {
-      "id": "earth-c-005",
-      "name": "苔の番人",
-      "type": "creature",
-      "element": "earth",
-      "cost": 5,
-      "attack": 5,
-      "health": 7,
-      "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。"
-    },
-    {
-      "id": "earth-c-006",
-      "name": "苔の使い",
-      "type": "creature",
-      "element": "earth",
-      "cost": 6,
-      "attack": 8,
       "health": 6,
       "traits": [],
-      "text": ""
-    },
-    {
-      "id": "earth-c-007",
-      "name": "根の賢者",
-      "type": "creature",
-      "element": "earth",
-      "cost": 1,
-      "attack": 2,
-      "health": 2,
-      "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
-    },
-    {
-      "id": "earth-c-008",
-      "name": "岳の使い",
-      "type": "creature",
-      "element": "earth",
-      "cost": 2,
-      "attack": 3,
-      "health": 3,
-      "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が1上がる。"
-    },
-    {
-      "id": "earth-c-009",
-      "name": "山の騎士",
-      "type": "creature",
-      "element": "earth",
-      "cost": 3,
-      "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": ""
+      "text": "このカードが破壊された時、自分のHPを3回復する。",
+      "effect": {
+        "kind": "healPlayerOnDeath",
+        "trigger": "onDeath",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-010",
-      "name": "礫の巨人",
+      "name": "地の巨人",
       "type": "creature",
       "element": "earth",
       "cost": 4,
-      "attack": 5,
-      "health": 5,
+      "attack": 3,
+      "health": 9,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が2上がる。"
+      "text": "このカードが破壊された時、自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayerOnDeath",
+        "trigger": "onDeath",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-011",
-      "name": "根の巫女",
+      "name": "山の守護者",
       "type": "creature",
       "element": "earth",
       "cost": 5,
-      "attack": 7,
-      "health": 5,
+      "attack": 5,
+      "health": 9,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。"
+      "text": "このカードが破壊された時、自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayerOnDeath",
+        "trigger": "onDeath",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-012",
-      "name": "根の踊り子",
+      "name": "砂の亡霊",
       "type": "creature",
       "element": "earth",
       "cost": 6,
-      "attack": 8,
-      "health": 6,
+      "attack": 6,
+      "health": 10,
       "traits": [],
-      "text": "このカードが破壊された時、自分のHPを5回復する。"
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。",
+      "effect": {
+        "kind": "passiveLightGain",
+        "trigger": "passive",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-013",
-      "name": "山の魔物",
+      "name": "土の魔物",
       "type": "creature",
       "element": "earth",
       "cost": 1,
       "attack": 2,
-      "health": 2,
+      "health": 4,
       "traits": [],
-      "text": "召喚時、自分のHPを2回復する。"
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。",
+      "effect": {
+        "kind": "passiveLightGain",
+        "trigger": "passive",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-014",
-      "name": "礫の使い",
+      "name": "苔の術師",
       "type": "creature",
       "element": "earth",
       "cost": 2,
       "attack": 3,
-      "health": 3,
+      "health": 5,
       "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が1上がる。"
+      "text": "このカードが破壊された時、自分のHPを3回復する。",
+      "effect": {
+        "kind": "healPlayerOnDeath",
+        "trigger": "onDeath",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-c-015",
@@ -1127,797 +2231,1569 @@
       "type": "creature",
       "element": "earth",
       "cost": 3,
-      "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "自分のターン開始時、このカードの攻撃力が2上がる。"
-    },
-    {
-      "id": "earth-c-016",
-      "name": "山の番人",
-      "type": "creature",
-      "element": "earth",
-      "cost": 4,
-      "attack": 5,
-      "health": 5,
-      "traits": [],
-      "text": "このカードが破壊された時、自分のHPを4回復する。"
-    },
-    {
-      "id": "earth-c-017",
-      "name": "岳の魔物",
-      "type": "creature",
-      "element": "earth",
-      "cost": 5,
-      "attack": 7,
-      "health": 5,
-      "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
-    },
-    {
-      "id": "earth-c-018",
-      "name": "岳の亡霊",
-      "type": "creature",
-      "element": "earth",
-      "cost": 6,
-      "attack": 7,
+      "attack": 3,
       "health": 7,
       "traits": [],
       "text": ""
     },
     {
+      "id": "earth-c-016",
+      "name": "礫の狩人",
+      "type": "creature",
+      "element": "earth",
+      "cost": 4,
+      "attack": 4,
+      "health": 8,
+      "traits": [],
+      "text": ""
+    },
+    {
+      "id": "earth-c-017",
+      "name": "苔の守護者",
+      "type": "creature",
+      "element": "earth",
+      "cost": 5,
+      "attack": 5,
+      "health": 9,
+      "traits": [],
+      "text": ""
+    },
+    {
+      "id": "earth-c-018",
+      "name": "岳の子",
+      "type": "creature",
+      "element": "earth",
+      "cost": 6,
+      "attack": 6,
+      "health": 10,
+      "traits": [],
+      "text": ""
+    },
+    {
       "id": "earth-c-019",
-      "name": "岳の番人",
+      "name": "根の戦士",
       "type": "creature",
       "element": "earth",
       "cost": 1,
       "attack": 2,
-      "health": 2,
+      "health": 4,
       "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
+      "text": ""
     },
     {
       "id": "earth-c-020",
-      "name": "根の王",
+      "name": "根の番人",
       "type": "creature",
       "element": "earth",
       "cost": 2,
-      "attack": 4,
-      "health": 2,
+      "attack": 2,
+      "health": 6,
       "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。"
+      "text": ""
     },
     {
       "id": "earth-s-001",
-      "name": "土の加護",
+      "name": "地の陣",
       "type": "special",
       "element": "earth",
       "cost": 1,
       "traits": [],
-      "text": "自分のHPを2回復する。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-s-002",
-      "name": "岳の祈り",
+      "name": "岩の陣",
       "type": "special",
       "element": "earth",
       "cost": 2,
       "traits": [],
-      "text": "自分のHPを3回復する。"
+      "text": "自分のクリーチャー1体の攻撃力を1上げる。",
+      "effect": {
+        "kind": "buffAllyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-s-003",
-      "name": "重の裂傷",
+      "name": "地の掟",
       "type": "special",
       "element": "earth",
       "cost": 3,
       "traits": [],
-      "text": "自分のクリーチャー1体のHPを3回復する。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-s-004",
-      "name": "礫の掟",
-      "type": "special",
-      "element": "earth",
-      "cost": 4,
-      "traits": [],
-      "text": "手札を1枚引く。"
-    },
-    {
-      "id": "earth-s-005",
       "name": "地の一撃",
       "type": "special",
       "element": "earth",
+      "cost": 4,
+      "traits": [],
+      "text": "自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "earth-s-005",
+      "name": "根の術",
+      "type": "special",
+      "element": "earth",
       "cost": 5,
       "traits": [],
-      "text": "自分のHPを4回復する。"
+      "text": "自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-s-006",
-      "name": "土の裂傷",
+      "name": "地の祈り",
       "type": "special",
       "element": "earth",
       "cost": 1,
       "traits": [],
-      "text": "手札を1枚引く。"
+      "text": "自分のクリーチャー1体の攻撃力を1上げる。",
+      "effect": {
+        "kind": "buffAllyAtk",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-s-007",
-      "name": "岳の陣",
+      "name": "苔の祈り",
       "type": "special",
       "element": "earth",
       "cost": 2,
       "traits": [],
-      "text": "自分のクリーチャー1体のHPを3回復する。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-s-008",
-      "name": "岳の掟",
+      "name": "地の嵐",
       "type": "special",
       "element": "earth",
       "cost": 3,
       "traits": [],
-      "text": "相手のクリーチャー1体の攻撃力を2下げる。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-s-009",
-      "name": "岩の術",
+      "name": "土の祈り",
       "type": "special",
       "element": "earth",
       "cost": 4,
       "traits": [],
-      "text": "自分のクリーチャー1体の攻撃力を2上げる。"
+      "text": "自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "earth-s-010",
-      "name": "礫の祈り",
+      "name": "砂の術",
       "type": "special",
       "element": "earth",
       "cost": 5,
       "traits": [],
-      "text": "自分のHPを4回復する。"
+      "text": "自分のHPを4回復する。",
+      "effect": {
+        "kind": "healPlayer",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-c-001",
-      "name": "星の術師",
+      "name": "輝の眷属",
       "type": "creature",
       "element": "heaven",
       "cost": 1,
-      "attack": 3,
+      "attack": 4,
       "health": 3,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
+      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-c-002",
-      "name": "神の巫女",
+      "name": "光の精",
       "type": "creature",
       "element": "heaven",
       "cost": 2,
       "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。ただし自分のドロー枚数が1減る。"
+      "health": 5,
+      "traits": [
+        "唯一"
+      ],
+      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-c-003",
-      "name": "天の守護者",
+      "name": "星の眷属",
       "type": "creature",
       "element": "heaven",
       "cost": 3,
       "attack": 5,
-      "health": 5,
+      "health": 6,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
+      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-c-004",
-      "name": "昇の踊り子",
+      "name": "聖の巨人",
       "type": "creature",
       "element": "heaven",
       "cost": 4,
       "attack": 6,
-      "health": 6,
+      "health": 7,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
+      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。このカードは毎ターン終了時にHPを1失う。",
+      "effect": {
+        "kind": "bonusAttackDamageThenSelfDamageOnTurnEnd",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-c-005",
-      "name": "祈の狩人",
+      "name": "聖の守護者",
       "type": "creature",
       "element": "heaven",
       "cost": 5,
       "attack": 8,
-      "health": 6,
-      "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。このカードは毎ターン終了時にHPを1失う。"
-    },
-    {
-      "id": "heaven-c-006",
-      "name": "星の亡霊",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 6,
-      "attack": 8,
-      "health": 8,
-      "traits": [
-        "唯一"
-      ],
-      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。ただし自分のドロー枚数が1減る。"
-    },
-    {
-      "id": "heaven-c-007",
-      "name": "輝の守護者",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 1,
-      "attack": 3,
-      "health": 3,
-      "traits": [
-        "唯一"
-      ],
-      "text": "攻撃時、相手のクリーチャー1体に追加で1ダメージを与える。このカードは毎ターン終了時にHPを1失う。"
-    },
-    {
-      "id": "heaven-c-008",
-      "name": "天の眷属",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 2,
-      "attack": 5,
-      "health": 3,
-      "traits": [],
-      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。"
-    },
-    {
-      "id": "heaven-c-009",
-      "name": "昇の子",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 3,
-      "attack": 5,
-      "health": 5,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
-    },
-    {
-      "id": "heaven-c-010",
-      "name": "輝の精",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 4,
-      "attack": 6,
-      "health": 6,
-      "traits": [],
-      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。"
-    },
-    {
-      "id": "heaven-c-011",
-      "name": "光の賢者",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 5,
-      "attack": 6,
-      "health": 8,
-      "traits": [
-        "唯一"
-      ],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
-    },
-    {
-      "id": "heaven-c-012",
-      "name": "輝の騎士",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 6,
-      "attack": 8,
-      "health": 8,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
-    },
-    {
-      "id": "heaven-c-013",
-      "name": "祈の巨人",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 1,
-      "attack": 3,
-      "health": 3,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
-    },
-    {
-      "id": "heaven-c-014",
-      "name": "祈の賢者",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 2,
-      "attack": 4,
-      "health": 4,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
-    },
-    {
-      "id": "heaven-c-015",
-      "name": "澄の従者",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 3,
-      "attack": 5,
-      "health": 5,
-      "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。このカードは毎ターン終了時にHPを1失う。"
-    },
-    {
-      "id": "heaven-c-016",
-      "name": "澄の眷属",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 4,
-      "attack": 6,
-      "health": 6,
-      "traits": [],
-      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。"
-    },
-    {
-      "id": "heaven-c-017",
-      "name": "輝の魔物",
-      "type": "creature",
-      "element": "heaven",
-      "cost": 5,
-      "attack": 7,
       "health": 7,
       "traits": [
         "唯一"
       ],
-      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。"
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。ただし自分のドロー枚数が1減る。",
+      "effect": {
+        "kind": "passiveLightGainWithDrawPenalty",
+        "trigger": "passive",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
-      "id": "heaven-c-018",
-      "name": "輝の戦士",
+      "id": "heaven-c-006",
+      "name": "祈の賢者",
       "type": "creature",
       "element": "heaven",
       "cost": 6,
       "attack": 9,
-      "health": 7,
+      "health": 8,
       "traits": [
         "唯一"
       ],
-      "text": "攻撃時、相手のクリーチャー1体に追加で4ダメージを与える。このカードは毎ターン終了時にHPを1失う。"
+      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-007",
+      "name": "祈の亡霊",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 1,
+      "attack": 4,
+      "health": 3,
+      "traits": [
+        "唯一"
+      ],
+      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-008",
+      "name": "昇の眷属",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 2,
+      "attack": 4,
+      "health": 5,
+      "traits": [],
+      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-009",
+      "name": "光の戦士",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 3,
+      "attack": 6,
+      "health": 5,
+      "traits": [],
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。ただし自分のドロー枚数が1減る。",
+      "effect": {
+        "kind": "passiveLightGainWithDrawPenalty",
+        "trigger": "passive",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-010",
+      "name": "祈の眷属",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 4,
+      "attack": 6,
+      "health": 7,
+      "traits": [],
+      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-011",
+      "name": "祈の術師",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 5,
+      "attack": 7,
+      "health": 8,
+      "traits": [],
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。ただし自分のドロー枚数が1減る。",
+      "effect": {
+        "kind": "passiveLightGainWithDrawPenalty",
+        "trigger": "passive",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-012",
+      "name": "澄の魔物",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 6,
+      "attack": 9,
+      "health": 8,
+      "traits": [],
+      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-013",
+      "name": "澄の狩人",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 1,
+      "attack": 4,
+      "health": 3,
+      "traits": [],
+      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-014",
+      "name": "星の使い",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 2,
+      "attack": 5,
+      "health": 4,
+      "traits": [
+        "唯一"
+      ],
+      "text": "このカードが場にいる限り、自分の光を毎ターン1多く得る。ただし自分のドロー枚数が1減る。",
+      "effect": {
+        "kind": "passiveLightGainWithDrawPenalty",
+        "trigger": "passive",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-015",
+      "name": "聖の踊り子",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 3,
+      "attack": 5,
+      "health": 6,
+      "traits": [],
+      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-016",
+      "name": "昇の精",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 4,
+      "attack": 6,
+      "health": 7,
+      "traits": [],
+      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-017",
+      "name": "光の子",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 5,
+      "attack": 8,
+      "health": 7,
+      "traits": [],
+      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-c-018",
+      "name": "澄の従者",
+      "type": "creature",
+      "element": "heaven",
+      "cost": 6,
+      "attack": 8,
+      "health": 9,
+      "traits": [],
+      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-c-019",
-      "name": "神の踊り子",
+      "name": "輝の守護者",
       "type": "creature",
       "element": "heaven",
       "cost": 1,
-      "attack": 3,
+      "attack": 4,
       "health": 3,
       "traits": [
         "唯一"
       ],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
+      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-c-020",
-      "name": "神の戦士",
+      "name": "澄の獣",
       "type": "creature",
       "element": "heaven",
       "cost": 2,
-      "attack": 4,
+      "attack": 5,
       "health": 4,
       "traits": [],
-      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。"
+      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-s-001",
-      "name": "昇の陣",
-      "type": "special",
-      "element": "heaven",
-      "cost": 1,
-      "traits": [
-        "唯一"
-      ],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
-    },
-    {
-      "id": "heaven-s-002",
-      "name": "翔の術",
-      "type": "special",
-      "element": "heaven",
-      "cost": 2,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
-    },
-    {
-      "id": "heaven-s-003",
-      "name": "神の裂傷",
-      "type": "special",
-      "element": "heaven",
-      "cost": 3,
-      "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体に追加で2ダメージを与える。このカードは毎ターン終了時にHPを1失う。"
-    },
-    {
-      "id": "heaven-s-004",
       "name": "星の陣",
       "type": "special",
       "element": "heaven",
+      "cost": 1,
+      "traits": [],
+      "text": "自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-s-002",
+      "name": "輝の加護",
+      "type": "special",
+      "element": "heaven",
+      "cost": 2,
+      "traits": [],
+      "text": "手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-s-003",
+      "name": "祈の術",
+      "type": "special",
+      "element": "heaven",
+      "cost": 3,
+      "traits": [],
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "heaven-s-004",
+      "name": "光の祈り",
+      "type": "special",
+      "element": "heaven",
       "cost": 4,
-      "traits": [
-        "唯一"
-      ],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
+      "traits": [],
+      "text": "自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-s-005",
-      "name": "翔の陣",
+      "name": "澄の陣",
       "type": "special",
       "element": "heaven",
       "cost": 5,
-      "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体に追加で3ダメージを与える。このカードは毎ターン終了時にHPを1失う。"
+      "traits": [
+        "唯一"
+      ],
+      "text": "自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-s-006",
-      "name": "聖の掟",
+      "name": "澄の波動",
       "type": "special",
       "element": "heaven",
       "cost": 1,
       "traits": [],
-      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。"
+      "text": "手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-s-007",
-      "name": "昇の掟",
+      "name": "神の祈り",
       "type": "special",
       "element": "heaven",
       "cost": 2,
-      "traits": [
-        "唯一"
-      ],
-      "text": "召喚時、自分の光を1増やす。ターン終了時、自分に1ダメージ。"
+      "traits": [],
+      "text": "手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-s-008",
-      "name": "神の癒し",
+      "name": "翔の一撃",
       "type": "special",
       "element": "heaven",
       "cost": 3,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
+      "text": "手札を1枚引く。その後、手札を1枚捨てる。",
+      "effect": {
+        "kind": "drawThenDiscard",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-s-009",
-      "name": "翔の嵐",
+      "name": "神の加護",
       "type": "special",
       "element": "heaven",
       "cost": 4,
       "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
+      "text": "自分の光を1増やす。",
+      "effect": {
+        "kind": "lightGain",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "heaven-s-010",
-      "name": "神の術",
+      "name": "天の術",
       "type": "special",
       "element": "heaven",
       "cost": 5,
-      "traits": [],
-      "text": "召喚時、手札を1枚引く。その後、手札を1枚捨てる。"
+      "traits": [
+        "唯一"
+      ],
+      "text": "自分の光を1増やす。ターン終了時、自分に1ダメージ。",
+      "effect": {
+        "kind": "lightGainThenSelfDamageOnTurnEnd",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-001",
-      "name": "闇の狩人",
+      "name": "夜の王",
       "type": "creature",
       "element": "nether",
       "cost": 1,
       "attack": 3,
-      "health": 3,
+      "health": 4,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に1ダメージを与える。自分のHPを1失う。"
+      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-002",
-      "name": "骸の眷属",
+      "name": "冥の魔物",
       "type": "creature",
       "element": "nether",
       "cost": 2,
       "attack": 4,
-      "health": 4,
+      "health": 5,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。自分のHPを1失う。"
+      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-003",
-      "name": "呪の子",
+      "name": "影の眷属",
       "type": "creature",
       "element": "nether",
       "cost": 3,
       "attack": 6,
-      "health": 4,
+      "health": 5,
       "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。"
+      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。",
+      "effect": {
+        "kind": "destroyOnAttackThenHalveSelf",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-004",
-      "name": "蝕の騎士",
+      "name": "骸の賢者",
       "type": "creature",
       "element": "nether",
       "cost": 4,
-      "attack": 6,
+      "attack": 7,
       "health": 6,
       "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。"
+      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-005",
-      "name": "亡の斥候",
+      "name": "黒の術師",
       "type": "creature",
       "element": "nether",
       "cost": 5,
-      "attack": 6,
+      "attack": 7,
       "health": 8,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。自分のHPを1失う。"
+      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-006",
-      "name": "影の守護者",
+      "name": "夜の従者",
       "type": "creature",
       "element": "nether",
       "cost": 6,
-      "attack": 7,
-      "health": 9,
+      "attack": 9,
+      "health": 8,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に4ダメージを与える。自分のHPを1失う。"
+      "text": "召喚時、相手のクリーチャー1体に4ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-007",
-      "name": "淵の戦士",
+      "name": "蝕の使い",
       "type": "creature",
       "element": "nether",
       "cost": 1,
-      "attack": 3,
+      "attack": 4,
       "health": 3,
-      "traits": [
-        "唯一"
-      ],
-      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。"
+      "traits": [],
+      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。",
+      "effect": {
+        "kind": "enemyLightDrainThenSelfDamage",
+        "trigger": "passive",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-008",
-      "name": "呪の騎士",
+      "name": "夜の踊り子",
       "type": "creature",
       "element": "nether",
       "cost": 2,
       "attack": 4,
-      "health": 4,
+      "health": 5,
       "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-009",
-      "name": "淵の騎士",
+      "name": "亡の戦士",
       "type": "creature",
       "element": "nether",
       "cost": 3,
-      "attack": 5,
+      "attack": 6,
       "health": 5,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。自分のHPを1失う。"
+      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。",
+      "effect": {
+        "kind": "destroyOnAttackThenHalveSelf",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-010",
-      "name": "夜の斥候",
+      "name": "夜の騎士",
       "type": "creature",
       "element": "nether",
       "cost": 4,
-      "attack": 5,
+      "attack": 6,
       "health": 7,
-      "traits": [
-        "唯一"
-      ],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "traits": [],
+      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-011",
-      "name": "夜の狩人",
+      "name": "蝕の術師",
       "type": "creature",
       "element": "nether",
       "cost": 5,
-      "attack": 6,
+      "attack": 7,
       "health": 8,
       "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-012",
-      "name": "蝕の精",
+      "name": "蝕の賢者",
       "type": "creature",
       "element": "nether",
       "cost": 6,
       "attack": 8,
-      "health": 8,
-      "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "health": 9,
+      "traits": [
+        "唯一"
+      ],
+      "text": "召喚時、相手のクリーチャー1体に4ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-013",
-      "name": "黒の狩人",
+      "name": "骸の術師",
       "type": "creature",
       "element": "nether",
       "cost": 1,
       "attack": 3,
-      "health": 3,
+      "health": 4,
       "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "text": "召喚時、相手のクリーチャー1体に1ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-014",
-      "name": "呪の獣",
+      "name": "淵の子",
       "type": "creature",
       "element": "nether",
       "cost": 2,
-      "attack": 4,
+      "attack": 5,
       "health": 4,
       "traits": [],
-      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。"
+      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-015",
-      "name": "蝕の王",
+      "name": "夜の亡霊",
       "type": "creature",
       "element": "nether",
       "cost": 3,
       "attack": 5,
-      "health": 5,
+      "health": 6,
       "traits": [],
-      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。"
+      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-016",
-      "name": "蝕の踊り子",
+      "name": "蝕の魔物",
       "type": "creature",
       "element": "nether",
       "cost": 4,
-      "attack": 5,
-      "health": 7,
+      "attack": 7,
+      "health": 6,
       "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。"
+      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。",
+      "effect": {
+        "kind": "destroyOnAttackThenHalveSelf",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-017",
-      "name": "亡の踊り子",
-      "type": "creature",
-      "element": "nether",
-      "cost": 5,
-      "attack": 6,
-      "health": 8,
-      "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
-    },
-    {
-      "id": "nether-c-018",
       "name": "黒の子",
       "type": "creature",
       "element": "nether",
-      "cost": 6,
+      "cost": 5,
       "attack": 7,
+      "health": 8,
+      "traits": [],
+      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
+    },
+    {
+      "id": "nether-c-018",
+      "name": "亡の番人",
+      "type": "creature",
+      "element": "nether",
+      "cost": 6,
+      "attack": 8,
       "health": 9,
       "traits": [],
-      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。"
+      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。",
+      "effect": {
+        "kind": "destroyOnAttackThenHalveSelf",
+        "trigger": "onAttack",
+        "params": {
+          "dmg": 4,
+          "heal": 5,
+          "buff": 3,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-019",
-      "name": "呪の狩人",
+      "name": "蝕の王",
       "type": "creature",
       "element": "nether",
       "cost": 1,
       "attack": 3,
-      "health": 3,
+      "health": 4,
       "traits": [],
-      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。"
+      "text": "召喚時、相手のクリーチャー1体に1ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-c-020",
-      "name": "冥の獣",
+      "name": "黒の従者",
       "type": "creature",
       "element": "nether",
       "cost": 2,
-      "attack": 4,
+      "attack": 5,
       "health": 4,
-      "traits": [],
-      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。"
+      "traits": [
+        "唯一"
+      ],
+      "text": "召喚時、相手のクリーチャー1体に2ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onSummon",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-001",
-      "name": "亡の掟",
+      "name": "影の癒し",
       "type": "special",
       "element": "nether",
       "cost": 1,
       "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "text": "相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-002",
-      "name": "黒の祈り",
+      "name": "蝕の加護",
       "type": "special",
       "element": "nether",
       "cost": 2,
-      "traits": [],
-      "text": "召喚時、相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。"
+      "traits": [
+        "唯一"
+      ],
+      "text": "相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-003",
-      "name": "骸の波動",
+      "name": "影の嵐",
       "type": "special",
       "element": "nether",
       "cost": 3,
-      "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "traits": [
+        "唯一"
+      ],
+      "text": "相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-004",
-      "name": "呪の加護",
+      "name": "亡の癒し",
       "type": "special",
       "element": "nether",
       "cost": 4,
       "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。"
+      "text": "相手のクリーチャー全体に3ダメージを与える。自分に1ダメージ。",
+      "effect": {
+        "kind": "aoeDamageEnemyCreaturesThenSelfDamage",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-005",
-      "name": "黒の癒し",
+      "name": "夜の加護",
       "type": "special",
       "element": "nether",
       "cost": 5,
       "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。"
+      "text": "相手のクリーチャー1体に3ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-006",
-      "name": "蝕の術",
+      "name": "淵の嵐",
       "type": "special",
       "element": "nether",
       "cost": 1,
       "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "text": "相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 1,
+          "heal": 2,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-007",
-      "name": "呪の術",
+      "name": "淵の一撃",
       "type": "special",
       "element": "nether",
       "cost": 2,
       "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。"
+      "text": "相手のクリーチャー1体に2ダメージを与える。自分のHPを1失う。",
+      "effect": {
+        "kind": "damageEnemyCreatureThenSelfDamage",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 1,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-008",
-      "name": "亡の一撃",
+      "name": "蝕の術",
       "type": "special",
       "element": "nether",
       "cost": 3,
       "traits": [],
-      "text": "攻撃時、相手のクリーチャー1体を破壊する。このカードはその後HPが半分になる。"
+      "text": "自分の光を1増やす。自分のHPを1失う。",
+      "effect": {
+        "kind": "lightGainThenSelfDamage",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 2,
+          "heal": 3,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-009",
-      "name": "冥の裂傷",
+      "name": "呪の波動",
       "type": "special",
       "element": "nether",
       "cost": 4,
       "traits": [],
-      "text": "このカードが場にいる限り、相手の光を毎ターン1減らす。ただし自分のHPも毎ターン1減る。"
+      "text": "相手の手札を1枚ランダムに捨てさせる。自分の光を1失う。",
+      "effect": {
+        "kind": "discardEnemyThenSelfLightLoss",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     },
     {
       "id": "nether-s-010",
-      "name": "影の波動",
+      "name": "冥の陣",
       "type": "special",
       "element": "nether",
       "cost": 5,
       "traits": [],
-      "text": "召喚時、相手のクリーチャー1体に3ダメージを与える。自分のHPを1失う。"
+      "text": "相手のクリーチャー全体に3ダメージを与える。自分に1ダメージ。",
+      "effect": {
+        "kind": "aoeDamageEnemyCreaturesThenSelfDamage",
+        "trigger": "onPlay",
+        "params": {
+          "dmg": 3,
+          "heal": 4,
+          "buff": 2,
+          "light": 1,
+          "draw": 1
+        }
+      }
     }
   ],
   "playerAbilities": {
@@ -1985,6 +3861,48 @@
         "type": "passive",
         "cost": 5,
         "text": "自分が直接攻撃を受けた時、相手に1ダメージを返す。"
+      },
+      {
+        "id": "p-fire-burn",
+        "name": "業火の加護",
+        "type": "passive",
+        "cost": 3,
+        "text": "火属性カードの与えるダメージ効果が+1される。"
+      },
+      {
+        "id": "p-wind-growth",
+        "name": "疾風の加速",
+        "type": "passive",
+        "cost": 3,
+        "text": "風属性クリーチャーのターン開始時の攻撃力上昇が+1される。"
+      },
+      {
+        "id": "p-water-heal",
+        "name": "清流の加護",
+        "type": "passive",
+        "cost": 3,
+        "text": "水属性カードの回復効果が+1される。"
+      },
+      {
+        "id": "p-earth-light",
+        "name": "大地の恵み",
+        "type": "passive",
+        "cost": 3,
+        "text": "土属性クリーチャーのパッシブ光獲得が+1される。"
+      },
+      {
+        "id": "p-heaven-mercy",
+        "name": "天啓の加護",
+        "type": "passive",
+        "cost": 4,
+        "text": "天属性カードの効果による自分への反動ダメージを1軽減する(最低0)。"
+      },
+      {
+        "id": "p-nether-drain",
+        "name": "冥府の盟約",
+        "type": "passive",
+        "cost": 4,
+        "text": "冥属性カードの与えるダメージ効果が+1される。"
       }
     ],
     "active": [
@@ -2029,6 +3947,48 @@
         "type": "active",
         "cost": 2,
         "text": "光2を消費して、自分のクリーチャー全体の攻撃力を1上げる(1ゲーム1回)。"
+      },
+      {
+        "id": "a-fire-blast",
+        "name": "火だるま",
+        "type": "active",
+        "cost": 3,
+        "text": "光4を消費して、相手のクリーチャー1体に4ダメージを与える(1ゲーム1回)。"
+      },
+      {
+        "id": "a-wind-haste",
+        "name": "俊足の一撃",
+        "type": "active",
+        "cost": 2,
+        "text": "光2を消費して、自分のクリーチャー1体の召喚酔い/攻撃済み状態を解除する(1ゲーム1回)。"
+      },
+      {
+        "id": "a-water-rain",
+        "name": "水の慈雨",
+        "type": "active",
+        "cost": 3,
+        "text": "光3を消費して、自分の場のクリーチャー全体のHPを3回復する(1ゲーム1回)。"
+      },
+      {
+        "id": "a-earth-fortify",
+        "name": "大地の盾",
+        "type": "active",
+        "cost": 3,
+        "text": "光3を消費して、自分の場のクリーチャー全体の最大HPと現在HPを2上げる(1ゲーム1回)。"
+      },
+      {
+        "id": "a-heaven-surge",
+        "name": "天空の奔流",
+        "type": "active",
+        "cost": 2,
+        "text": "光1を消費して、光を4得る(差し引き+3、1ゲーム1回)。"
+      },
+      {
+        "id": "a-nether-execute",
+        "name": "亡者の一撃",
+        "type": "active",
+        "cost": 4,
+        "text": "光5を消費して、相手の最も攻撃力が高いクリーチャー1体を破壊する。自分は2ダメージを受ける(1ゲーム1回)。"
       }
     ]
   }
