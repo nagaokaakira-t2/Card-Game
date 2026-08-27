@@ -11,6 +11,8 @@
   --heaven: #e8d98a;
   --nether: #9b7fd9;
   --accent: #e8d98a;
+  --hp: #d9694f;
+  --hp-self: #6fbf73;
 }
 
 * { box-sizing: border-box; }
@@ -31,11 +33,7 @@ header {
 }
 
 header h1 { font-size: 18px; margin: 0; }
-#turn-indicator {
-  font-size: 14px;
-  color: var(--accent);
-  font-weight: bold;
-}
+#turn-indicator { font-size: 14px; color: var(--accent); font-weight: bold; }
 
 main {
   max-width: 1000px;
@@ -45,54 +43,24 @@ main {
   gap: 16px;
 }
 
-.zone {
-  background: var(--panel);
-  border-radius: 10px;
-  padding: 14px;
-}
-
+.zone { background: var(--panel); border-radius: 10px; padding: 14px; }
 .zone-header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 8px;
+  display: flex; justify-content: space-between;
+  font-size: 13px; color: var(--muted); margin-bottom: 8px;
 }
 
 .player-target {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--panel-2);
-  cursor: pointer;
-  font-size: 12px;
+  display: inline-block; padding: 4px 10px; border-radius: 6px;
+  background: var(--panel-2); cursor: pointer; font-size: 12px;
 }
 
-.field {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  min-height: 100px;
-}
-
-.hand {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed #33384333;
-}
+.field { display: flex; flex-wrap: wrap; gap: 8px; min-height: 90px; }
+.hand { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .card {
-  width: 130px;
-  border-radius: 8px;
-  padding: 8px;
-  background: var(--panel-2);
-  border: 2px solid transparent;
-  font-size: 12px;
+  width: 130px; border-radius: 8px; padding: 8px;
+  background: var(--panel-2); border: 2px solid transparent; font-size: 12px;
 }
-
 .card-small { width: 110px; }
 
 .card.element-fire   { border-color: var(--fire); }
@@ -109,130 +77,92 @@ main {
 
 .card.clickable { cursor: pointer; }
 .card.clickable:hover { transform: translateY(-2px); }
-.card.selected { outline: 2px solid var(--accent); }
+.card.selected { outline: 3px solid var(--accent); }
 .card.sick { opacity: 0.5; }
 .card.used { opacity: 0.4; }
 
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+.controls { display: flex; justify-content: space-between; align-items: center; }
 
-#end-turn-btn, #confirm-start-btn {
-  background: var(--accent);
-  color: #14161b;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 18px;
-  font-weight: bold;
-  cursor: pointer;
+#end-turn-btn, #confirm-start-btn, .confirm-btn {
+  background: var(--accent); color: #14161b; border: none; border-radius: 6px;
+  padding: 8px 18px; font-weight: bold; cursor: pointer;
 }
 #end-turn-btn:disabled, #confirm-start-btn:disabled { opacity: 0.4; cursor: default; }
 
-.secondary-btn {
-  background: var(--panel-2);
-  color: var(--text);
-  border: 1px solid var(--muted);
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 12px;
-  cursor: pointer;
-  margin-left: 6px;
+.secondary-btn, .cancel-btn {
+  background: var(--panel-2); color: var(--text); border: 1px solid var(--muted);
+  border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; margin-left: 6px;
 }
-.secondary-btn:hover { border-color: var(--accent); }
+.secondary-btn:hover, .cancel-btn:hover { border-color: var(--accent); }
 
-.abilities {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+.abilities { display: flex; flex-wrap: wrap; gap: 8px; }
 .ability {
-  background: var(--panel-2);
-  border-radius: 8px;
-  padding: 8px 10px;
-  font-size: 11px;
-  width: 200px;
+  background: var(--panel-2); border-radius: 8px; padding: 8px 10px;
+  font-size: 11px; width: 200px;
 }
 .ability.clickable { cursor: pointer; border: 1px solid var(--accent); }
 .ability.used { opacity: 0.4; border-color: var(--muted); }
 
 #log {
-  max-height: 160px;
-  overflow-y: auto;
-  font-size: 12px;
-  color: var(--muted);
-  display: flex;
-  flex-direction: column-reverse;
+  max-height: 160px; overflow-y: auto; font-size: 12px; color: var(--muted);
+  display: flex; flex-direction: column-reverse;
 }
 
 /* モード選択画面 */
-#mode-select {
-  max-width: 480px;
-  margin: 80px auto;
-  text-align: center;
-}
+#mode-select { max-width: 480px; margin: 80px auto; text-align: center; }
 #mode-select h2 { margin-bottom: 8px; }
 #mode-select p { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
-.mode-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+.mode-buttons { display: flex; flex-direction: column; gap: 12px; }
 .mode-btn {
-  background: var(--panel-2);
-  border: 2px solid var(--accent);
-  color: var(--text);
-  border-radius: 8px;
-  padding: 16px;
-  font-size: 15px;
-  cursor: pointer;
-  text-align: left;
+  background: var(--panel-2); border: 2px solid var(--accent); color: var(--text);
+  border-radius: 8px; padding: 16px; font-size: 15px; cursor: pointer; text-align: left;
 }
 .mode-btn:hover { background: #2f3542; }
 .mode-btn small { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
 
 /* デッキ/能力ビルダー画面 */
-.builder-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
+.builder-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
 .tab-btn {
-  background: var(--panel-2);
-  color: var(--muted);
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 13px;
+  background: var(--panel-2); color: var(--muted); border: none; border-radius: 6px;
+  padding: 8px 16px; cursor: pointer; font-size: 13px;
 }
 .tab-btn.active { color: var(--bg); background: var(--accent); font-weight: bold; }
 
 .builder-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  font-size: 13px;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 10px; font-size: 13px; flex-wrap: wrap; gap: 8px;
 }
 
-.card-pool {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 8px;
-  max-height: 480px;
-  overflow-y: auto;
-  padding: 4px;
+/* 属性ごとの列 */
+.card-pool-columns {
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px;
+  max-height: 560px;
+}
+.pool-column {
+  flex: 0 0 220px; background: #191c22; border-radius: 8px; padding: 8px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.pool-column-title {
+  font-weight: bold; font-size: 13px; text-align: center; padding: 4px 0 0;
+  border-bottom: none; margin-bottom: 0;
+}
+.pool-column-desc {
+  font-size: 9.5px; color: var(--muted); text-align: center; padding-bottom: 4px;
+  border-bottom: 2px solid var(--muted); margin-bottom: 4px; line-height: 1.3;
+}
+.pool-column.element-fire   .pool-column-desc { border-color: var(--fire); }
+.pool-column.element-wind   .pool-column-desc { border-color: var(--wind); }
+.pool-column.element-water  .pool-column-desc { border-color: var(--water); }
+.pool-column.element-earth  .pool-column-desc { border-color: var(--earth); }
+.pool-column.element-heaven .pool-column-desc { border-color: var(--heaven); }
+.pool-column.element-nether .pool-column-desc { border-color: var(--nether); }
+
+.pool-type-label {
+  font-size: 11px; color: var(--muted); margin-top: 4px; padding-left: 2px;
 }
 
 .pool-card {
-  background: var(--panel-2);
-  border-radius: 8px;
-  padding: 8px;
-  font-size: 11px;
+  background: var(--panel-2); border-radius: 6px; padding: 6px; font-size: 10.5px;
   border: 2px solid transparent;
 }
 .pool-card.element-fire   { border-color: var(--fire); }
@@ -242,41 +172,52 @@ main {
 .pool-card.element-heaven { border-color: var(--heaven); }
 .pool-card.element-nether { border-color: var(--nether); }
 
-.pool-card-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 6px;
-}
+.pool-card-row { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
 .pool-btn {
-  background: var(--panel);
-  color: var(--text);
-  border: 1px solid var(--muted);
-  border-radius: 4px;
-  width: 24px; height: 24px;
-  cursor: pointer;
-  font-size: 13px;
-  line-height: 1;
+  background: var(--panel); color: var(--text); border: 1px solid var(--muted);
+  border-radius: 4px; width: 22px; height: 22px; cursor: pointer; font-size: 12px; line-height: 1;
 }
 .pool-btn:disabled { opacity: 0.3; cursor: default; }
 .pool-count { font-weight: bold; }
 
 .ability-pool {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 8px;
-  max-height: 480px;
-  overflow-y: auto;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px; max-height: 480px; overflow-y: auto;
 }
 .ability-option {
-  background: var(--panel-2);
-  border: 2px solid var(--muted);
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 12px;
-  cursor: pointer;
+  background: var(--panel-2); border: 2px solid var(--muted); border-radius: 8px;
+  padding: 10px; font-size: 12px; cursor: pointer;
 }
 .ability-option.selected { border-color: var(--accent); background: #2f3542; }
 .ability-option.disabled { opacity: 0.35; cursor: default; }
+
+/* 簡易盤面 */
+.board-panel {
+  background: var(--panel); border-radius: 10px; padding: 12px 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.board-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; }
+.board-label { width: 34px; font-weight: bold; color: var(--accent); }
+.hp-bar-outer {
+  width: 140px; height: 10px; background: #33384a; border-radius: 5px; overflow: hidden;
+}
+.hp-bar-inner { height: 100%; background: var(--hp); transition: width 0.3s; }
+.hp-bar-inner.self { background: var(--hp-self); }
+.board-stat { color: var(--muted); white-space: nowrap; }
+.board-stat b { color: var(--text); }
+
+/* 選択プレビュー */
+.selection-panel { min-height: 60px; }
+.selection-hint { color: var(--muted); font-size: 12px; margin: 0; }
+.selection-content { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.selection-card-detail { flex: 0 0 200px; }
+.selection-actions { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+.selection-actions p { margin: 0; font-size: 12px; color: var(--muted); max-width: 260px; }
+
+/* 行動バナー */
+.action-banner {
+  max-width: 1000px; margin: 0 auto; padding: 0 24px;
+  font-size: 13px; color: var(--accent); min-height: 20px;
+}
 
 .hidden { display: none !important; }
